@@ -1,12 +1,9 @@
-#include <iostream>
-#include <ifstream>
-#include <string>
-#include <vector>
+#include <"../include/race.h">
+
 using namespace std;
 
 class Race {
 	private:
-		const static int NUMABILITY = 6;
 		const static ifstream raceFile = ifstream();
 		string name;
 		string type;
@@ -37,6 +34,14 @@ class Race {
 			return size;
 		}
 
+		bool isSubtype(string s) {
+			for(int i = 0; i < subtype.size(); i++) {
+				if(s == subtype.at(i)) {
+					return true;
+				}
+			}
+			return false;
+		}
 
 		Race(string filename) {
 			string temp;
@@ -56,7 +61,7 @@ class Race {
 			while(getline(splitter, temp, ',')) {
 				//Make a copy and append to the list
 				if(!temp.isEmpty())
-					subtype.push_back(string(temp));
+					subtype.push_back(&(new string(&temp)));
 			}
 			raceFile.getline()
 			for(int i = 0; i < NUMABILITY; i++) {
